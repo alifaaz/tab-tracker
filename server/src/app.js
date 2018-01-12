@@ -2,6 +2,10 @@ import Express from 'express'
 import morgan from 'morgan'
 import cors from 'cors'
 import bodyParser from 'body-parser'
+import mongo, { Promise } from 'mongoose'
+import config from '../conf/config.json'
+import assert from 'assert'
+import routers from '../routres';
 // هنا بديت بالمشروغ
 const app = Express()
 // عبمود اليرل وعلمود الجيسةن
@@ -12,24 +16,14 @@ app.use(morgan('combined'))
 // هنا اصير عوائل اسمح للكل يجون للموقع ماتي وهذا خطر عالموقع
 app.use(cors())
 
-// test ai jwt
-let cats = [{name: 'kity', color: 'black'}, {name: 'dodo', color: 'black&white'}]
+// هنا كل الاي بي اي هنا الراةترس
+app.use('/api', routers)
 
-app.get('/cats', (req, res) => {
-  res.json(cats)
-})
+mongo.Promise = global.Promise
+mongo.connect(config.URI_DB, {useMongoClient: true}, (err) => {
+  assert.equal(null, err)
+}).then(() => {
+  app.listen(process.env.port || 3000)
 
-app.post('/cats', (req, res) => {
-  let cat = { 'name': req.body.name,
-    'color': req.body.color}
-  cats.push(cat);
-  res.send(cats)
-})
-
-app.post('/register', (req, res) => {
-  res.send({
-    message: `hahaah this sound good you ${req.body.name}`
-  })
-})
-
-app.listen(process.env.port || 3000)
+  console.log('you have successfuly conected')
+}).catch(err => asser.equal(null, err))
