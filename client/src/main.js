@@ -6,9 +6,9 @@ import router from './router'
 
 Vue.config.productionTip = false
 
-router.beforeEach((to,from,next)=>{
-  document.title = to.meta.title;
-  next();
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title
+  next()
 })
 /* eslint-disable no-new */
 new Vue({
@@ -17,3 +17,10 @@ new Vue({
   template: '<App/>',
   components: { App }
 })
+
+// new Vue({
+//   el: '#app',
+//   router,
+
+//   render: h => h(App)
+// })
