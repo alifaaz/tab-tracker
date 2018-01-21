@@ -1,13 +1,24 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+
+    <v-app>
+    <app-header></app-header>
+    <transition mode="in-out" transition="slide-y-reverse-transition">
+          <router-view/>
+      
+      </transition>  
+    </v-app>
+
   </div>
 </template>
 
 <script>
+import header from "./components/templates/header.vue";
 export default {
-  name: 'app'
+  name: 'app',
+  components: {
+    appHeader:header
+  }
 }
 </script>
 
@@ -16,8 +27,8 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  /* text-align: center; */
+  /* color: #2c3e50; */
+  /* margin-top: 60px; */
 }
 </style>

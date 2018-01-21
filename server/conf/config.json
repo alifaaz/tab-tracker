@@ -1,3 +1,7 @@
 {
-    "URI_DB":"mongodb://music:123456@localhost:27017/music?authSource=admin"
+    "URI_DB":"mongodb://music:123456@localhost:27017/music?authSource=admin",
+    "auth":{
+        
+            "SECRET_kEY":"HELLO THIS IS ME YOU LOOK IT FOR HAHAHHAH"
+    }
 }

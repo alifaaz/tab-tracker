@@ -1,5 +1,5 @@
 import mongo, {Schema} from 'mongoose'
-import bcrypt from 'bcrypt-nodejs';
+import bcrypt from 'bcrypt-nodejs'
 const Users = new Schema({
   name: {type: String},
   email: {type: String, unique: true, required: true},
@@ -11,7 +11,7 @@ const Users = new Schema({
 Users.methods.hashPassword = (pass) => {
   return bcrypt.hashSync(pass)
 }
-Users.methods.verifyPassword = (pass) => {
-  return bcrypt.compareSync(pass, this.password)
+Users.methods.verifyPassword = (sentPass,registerPass) => {
+  return bcrypt.compareSync(sentPass,registerPass)
 }
 export default mongo.model('user', Users)
